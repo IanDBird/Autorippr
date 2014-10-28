@@ -162,14 +162,19 @@ class makeMKV(object):
 
         lines = results.split("\n")
         for line in lines:
-            if "skipped" in line:
-                continue
-
+            skipStrings = [
+                "profile parsing",
+                "skipped"
+            ]
+            
             badStrings = [
                 "failed",
                 "Fail",
                 "error"
             ]
+            
+            if any(x in line.lower() for x in skipStrings):
+                continue
 
             if any(x in line.lower() for x in badStrings):
                 self.log.error(line)
