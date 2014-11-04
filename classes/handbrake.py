@@ -88,7 +88,10 @@ class handBrake(object):
             outMovie, 
             ' '.join(args)
         )
- 
+        
+        self.log.debug("Command to be executed")
+        self.log.debug(command)
+        
         proc = subprocess.Popen(
             command,
             stdout=subprocess.PIPE,
